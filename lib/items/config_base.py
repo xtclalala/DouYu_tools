@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 # author:      YYT
 # create_time: 2021/8/5  15:36
-import logging
 from configparser import RawConfigParser
-
 from lib.log.log_util import logging
 
 

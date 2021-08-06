@@ -1,11 +1,6 @@
 # -*- coding: utf-8 -*-
 # author:      YYT
 # create_time: 2021/8/5  14:42
-import re
-import sys
-import os
-
-
 from lib.items.singleton import Singleton
 from lib.items.config_base import RawConfig
 from base import get_path
