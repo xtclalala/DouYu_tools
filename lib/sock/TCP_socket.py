@@ -37,7 +37,7 @@ class TCPSocket(object):
                     self.socket.connect((self.host, self.port))
                 except Exception as e:
                     logging.warning("Socket connect failed with %s:%d. Exception: %s"
-                          % (self.host, self.port, e))
+                                    % (self.host, self.port, e))
                     self.socket.close()
                     self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                     logging.warning("Try reconnect in 5 seconds")
@@ -47,7 +47,6 @@ class TCPSocket(object):
                 else:
                     self.closed = False
                     break
-
 
     def receive(self, target_size):
         data = b''
@@ -64,4 +63,3 @@ class TCPSocket(object):
             target_size -= len(tmp)
             data += tmp
         return data
-

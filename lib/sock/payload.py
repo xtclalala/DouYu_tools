@@ -10,7 +10,7 @@ reserved_data_field = 0
 
 
 def wai(func, *args, **kwargs):
-    def assemble_transfer_data():
+    def assemble_transfer_data(*args, **kwargs):
         ori_str = func(*args, **kwargs)
         data_size = len(ori_str)
         packet_size = 4 * 2 + data_size + 1
@@ -24,17 +24,8 @@ def wai(func, *args, **kwargs):
 
     return assemble_transfer_data
 
-class PayloadMSG(metaclass=Singleton):
 
-    # @staticmethod
-    # def msg(msg_str):
-    #     msg_bytes = msg_str.encode()
-    #     msg_length = len(msg_bytes) + 8
-    #     msg_code = 689
-    #     msg_head = int.to_bytes(msg_length, 4, "little") \
-    #                + int.to_bytes(msg_length, 4, "little") \
-    #                + int.to_bytes(msg_code, 4, "litter")
-    #     return msg_head, msg_bytes
+class PayloadMSG(metaclass=Singleton):
 
     @staticmethod
     @wai
@@ -48,13 +39,11 @@ class PayloadMSG(metaclass=Singleton):
         res = "type@=joingroup/rid@=" + str(room_id) + "/gid@=-9999/"
         return res
 
-
+    @staticmethod
     @wai
-    def assemble_heartbeat_str(self):
+    def assemble_heartbeat_str():
         res = "type@=keeplive/tick@=%s/" % int(time.time()) + "/"
         return res
-
-
 
     @staticmethod
     def extract_str_from_data(data):
