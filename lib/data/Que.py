@@ -5,6 +5,7 @@ import queue
 
 from threading import Thread
 from lib.cheek.Cheek import Cheek
+from lib.ms.Mouse import Mouse
 
 
 class Que(Thread):
@@ -20,4 +21,4 @@ class Que(Thread):
 
     def run(self):
         while True:
-            self.que.get().get("txt")     # 拿到了信息,输出
+            Mouse().get_msg(self.que.get())

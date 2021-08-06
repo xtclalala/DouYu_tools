@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 # author:      YYT
 # create_time: 2021/8/5  14:42
+import re
+
 from lib.items.singleton import Singleton
 from lib.items.config_base import RawConfig
 from base import get_path
@@ -22,3 +24,5 @@ class ConfigUtil(metaclass=Singleton):
 
 if __name__ == '__main__':
     c = ConfigUtil()
+    print(re.match("^([0-9]{1,2})([a-z])$", "11b").groups())
+    print(ord("a"))

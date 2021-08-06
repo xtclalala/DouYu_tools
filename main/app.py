@@ -38,7 +38,6 @@ class APP(object):
         output = {"name": msg['nn'], "txt": msg['txt'], "type": type_}
         print(output)
         self.que.put(output)
-
     # todo 取队列数据, 控制鼠标点击位置
 
     def get_msg_from_que(self):
