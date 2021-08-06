@@ -36,7 +36,6 @@ class APP(object):
 
     def payload_handler(self, msg, type_):
         output = {"name": msg['nn'], "txt": msg['txt'], "type": type_}
-        print(output)
         self.que.put(output)
 
     def get_msg_from_que(self):
