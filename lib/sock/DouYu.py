@@ -124,8 +124,10 @@ class MessageWorker(Thread):
     def enter_room(self):
         data = PayloadMSG.assemble_login_str(self.room_id)
         self.socket.send(data)
+        logging.info("login is successful")
         data = PayloadMSG.assemble_join_group_str(self.room_id)
         self.socket.send(data)
+        logging.info("group is successful")
 
     def run(self):
         self.prepare()

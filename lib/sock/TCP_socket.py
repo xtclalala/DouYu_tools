@@ -46,6 +46,7 @@ class TCPSocket(object):
                     continue
                 else:
                     self.closed = False
+                    logging.info("socket is successful")
                     break
 
     def receive(self, target_size):
