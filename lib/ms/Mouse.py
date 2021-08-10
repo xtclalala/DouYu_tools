@@ -34,7 +34,8 @@ class Mouse(metaclass=Singleton):
             self.run_keyboard(letter)
 
     def run_keyboard(self, letter):
-        self.mouse.typewrite(str(letter))
+        self.mouse.keyDown(str(letter))
+        self.mouse.keyUp(str(letter))
 
     def run_mouse(self, x, y):
         self.mouse.click(self.width_x(x), self.height_y(y))
