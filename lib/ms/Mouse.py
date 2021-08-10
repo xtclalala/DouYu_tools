@@ -30,7 +30,7 @@ class Mouse(metaclass=Singleton):
             msg_width, msg_height = re.match(msg_rule, msg).groups()
             self.run_mouse(msg_width, msg_height)
         elif msg_console_type in "keyboard":
-            letter = re.match(msg_rule, msg).groups()
+            letter = re.match(msg_rule, msg).group()
             self.run_keyboard(letter)
 
     def run_keyboard(self, letter):
