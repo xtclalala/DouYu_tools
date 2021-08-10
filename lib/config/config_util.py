@@ -17,6 +17,7 @@ class ConfigUtil(metaclass=Singleton):
         self.host = config.get("socket", "host")
         self.port = int(config.get("socket", "port"))
         self.msg_rule = config.get_dict("msg_rule")
+        self.type_ = config.get_dict("type")
 
     def get_msg_type(self):
         return list(self.msg_rule.keys())

@@ -7,13 +7,15 @@ import pyautogui
 from lib.log.log_util import logging
 from lib.items.singleton import Singleton
 from lib.config.config_util import ConfigUtil
+
+
 class Mouse(metaclass=Singleton):
 
     def __init__(self):
         self.mouse = pyautogui
         self.mouse.PAUSE = 1
         conf = ConfigUtil()
-        self.msg_rule = conf.msg_rule
+        self.type_ = conf.type_
         self.true_False()
 
     def true_False(self):
@@ -22,10 +24,17 @@ class Mouse(metaclass=Singleton):
 
     def get_msg(self, msg_dict):
         msg = msg_dict.get("txt")
-        msg_type = msg_dict.get("type")
-        msg_rule = self.msg_rule.get(msg_type)
-        msg_width, msg_height = re.match(msg_rule, msg).groups()
-        self.run_mouse(msg_width, msg_height)
+        msg_console_type = msg_dict.get("type_")
+        msg_rule = self.type_.get(msg_console_type)
+        if msg_console_type is "mouse":
+            msg_width, msg_height = re.match(msg_rule, msg).groups()
+            self.run_mouse(msg_width, msg_height)
+        elif msg_console_type is "keyboard":
+            letter = re.match(msg_rule, msg).groups()
+            self.run_keyboard(letter)
+
+    def run_keyboard(self, letter):
+        self.mouse.typewrite(str(letter))
 
     def run_mouse(self, x, y):
         self.mouse.click(self.width_x(x), self.height_y(y))
@@ -41,6 +50,7 @@ class Mouse(metaclass=Singleton):
         if ord(y) - 96 > 12:
             logging.warning(f"{y} is too big")
         return 90 * (ord(y) - 97) + 45
+
 
 if __name__ == '__main__':
     m = Mouse()

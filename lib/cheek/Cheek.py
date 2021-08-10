@@ -12,24 +12,22 @@ class Cheek(metaclass=Singleton):
 
     def __init__(self):
         conf = ConfigUtil()
-        self.rule_dict = conf.msg_rule
+        self.type_ = conf.type_
 
     def cheek_msg(self, msg_dict):
         if not isinstance(msg_dict, dict):
             logging.error("msg_dict is not dict")
-            return False
+            return False, 0
 
         msg = msg_dict.get("txt", False)
 
         if msg is False:
             logging.error("do not have msg")
-            return False
-        msg_type_ = msg_dict.get("type", "chatmsg")
-        msg_rule = self.rule_dict.get(msg_type_)
-
+            return False, 0
         msg = msg.lower().strip()
-        re_ = re.match(msg_rule, msg)
-        if re_:
-            return True
-        else:
-            return False
+        for key, value in self.type_:
+
+            re_ = re.match(value, msg)
+            if re_:
+                return True, key
+        return False, 0
