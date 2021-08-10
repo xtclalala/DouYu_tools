@@ -26,10 +26,10 @@ class Mouse(metaclass=Singleton):
         msg = msg_dict.get("txt")
         msg_console_type = msg_dict.get("type_")
         msg_rule = self.type_.get(msg_console_type)
-        if msg_console_type is "mouse":
+        if msg_console_type in "mouse":
             msg_width, msg_height = re.match(msg_rule, msg).groups()
             self.run_mouse(msg_width, msg_height)
-        elif msg_console_type is "keyboard":
+        elif msg_console_type in "keyboard":
             letter = re.match(msg_rule, msg).groups()
             self.run_keyboard(letter)
 

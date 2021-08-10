@@ -18,7 +18,8 @@ class Que(Thread):
         # item = {"name": 用户名称, "txt": 弹幕内容, "type": 弹幕类型}
         ret, key_= Cheek().cheek_msg(item)
         if ret:
-            self.que.put(item.update({"type_": key_}))
+            item.update({"type_": key_})
+            self.que.put(item)
 
     def run(self):
         while True:

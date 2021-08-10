@@ -25,7 +25,7 @@ class Cheek(metaclass=Singleton):
             logging.error("do not have msg")
             return False, 0
         msg = msg.lower().strip()
-        for key, value in self.type_:
+        for key, value in self.type_.items():
 
             re_ = re.match(value, msg)
             if re_:
